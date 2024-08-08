@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Echo Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        textarea { width: 100%; height: 200px; }
+        button { margin-top: 10px; }
+        #result { margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JSON Echo Service</h1>
+    <textarea id="jsonInput" placeholder="ここにJSONを入力してください"></textarea>
+    <button onclick="echoJson()">Echo JSON</button>
+    <div id="result"></div>
+
+    <script>
+        function echoJson() {
+            const input = document.getElementById('jsonInput').value;
+            const resultDiv = document.getElementById('result');
+            try {
+                const jsonObj = JSON.parse(input);
+                resultDiv.textContent = JSON.stringify(jsonObj, null, 2);
+            } catch (error) {
+                resultDiv.textContent = '無効なJSONです: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
